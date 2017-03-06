@@ -7,7 +7,7 @@ library(wordcloud)
 library(RColorBrewer)
 
 
-data <- read.csv("Crowdbabble_Social-Media-Analytics_Twitter-Download_Donald-Trump_7375-Tweets.csv")
+data <- read.csv("data/Crowdbabble_Social-Media-Analytics_Twitter-Download_Donald-Trump_7375-Tweets.csv")
 
 corpus <- Corpus(VectorSource(data$Tweet_Text))
 
