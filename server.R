@@ -26,6 +26,10 @@ march.photos <- read.csv("data/womensmarchphotos.csv", stringsAsFactors = F) %>%
 # Defines server function
 my.server <- function(input, output) {
   
+#############
+# Polarity  #
+#############
+  
   # Creates reactive function that takes in user input and changes polarity tweets data frame to view
   polarity.candidate <- reactive({
     data <- sample.polarity
@@ -88,26 +92,26 @@ my.server <- function(input, output) {
     # Grab the number of rows, max and min polarity, and the candidates those tweets are mentioning
     rows <- nrow(data)
     max <- max(data$polarity)
-    max.candidate <- filter(data, polarity == max) 
+    max.candidate <- filter(data, polarity == max) %>% select(Candidate)
     max.candidate <- unique(max.candidate$Candidate)
     
     # If there is more than one candidate with the max, print custom message
     if (length(max.candidate) == 3) {
       max.candidate <- "Bernie, Clinton, and Trump"
     } else if (length(max.candidate) == 2) {
-      max.candidate <- max.candidate[1] + " and " + max.candidate[2]
+      max.candidate <- paste(max.candidate[1], "and", max.candidate[2])
     } 
     
     # Find the min polarity and candidate
     min <- min(data$polarity)
-    min.candidate <- filter(data, polarity == min) 
+    min.candidate <- filter(data, polarity == min) %>% select(Candidate)
     min.candidate <- unique(min.candidate$Candidate)
     
     # If multiple candidates have same min polarity, print custom message
     if (length(min.candidate) == 3) {
       min.candidate <- "Bernie, Clinton, and Trump"
     } else if (length(min.candidate) == 2) {
-      min.candidate <- min.candidate[1] + " and " + min.candidate[2]
+      min.candidate <- paste(min.candidate[1], "and", min.candidate[2])
     }
     
     # Find total average polarity of data
@@ -133,10 +137,18 @@ my.server <- function(input, output) {
                                                                                                                  2),
                       ". We would have to do further statistical analysis to see if the differences are actually
                       significant enough to say that Bernie tweeters on average had more positive things to say,
-                      and that tweeters mentioning Trump had more positive sentiments than tweets about Hillary.")
+                      and that tweeters mentioning Trump had more positive sentiments than tweets about Hillary. It
+                      does not seem like there is much variance in the average polarity of tweets about each candidate,
+                      as each had a distribution including very negative, neutral, and positive tweets. This could be
+                      indicative of our especially divisive election year and reflective of our diverse sentiments
+                      as a nation about our candidates (or at least within the Twitter connected population).")
     return(analysis)
   })
-
+  
+#########
+# Bonus #
+#########
+  
   # Generate a new image url if action button is clicked
   img.url <- reactive({
     if (input$generate.img) {
@@ -187,8 +199,8 @@ my.server <- function(input, output) {
     list <- tags$ul(
       tags$li("http://pbs.twimg.com/media/C2u4QQvWEAAqLpM.jpg"),
       tags$li("http://pbs.twimg.com/media/C2u5J4aW8AEQcZW.jpg"),
-      tags$li("http://pbs.twimg.com/media/C2u2yWRVQAAXTMx.jpg"),
-      tags$li("http://pbs.twimg.com/media/C2u1HdaUAAAfNUR.jpg")
+      tags$li("http://pbs.twimg.com/media/C2u1HdaUAAAfNUR.jpg"),
+      tags$li("http://pbs.twimg.com/media/C2u2tJ3UcAAKqdn.jpg")
     )
     HTML(paste("", list, ""), sep = "</br>") # separate the list from the paragraph text with break line
   })

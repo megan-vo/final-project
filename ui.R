@@ -41,7 +41,7 @@ my.ui <- fluidPage(
                    Donald Trump, and Hillary Clinton. Tweets with a polarity of", strong( ' -1 ' ), "theoretically
                    indicates strong negativity while tweets with a polarity of", strong( ' 1 ' ), "indicates strong
                    positivity."),
-                 
+                 p("The link to the data set: ", a("https://www.dataquest.io/blog/matplotlib-tutorial/")),
              
                  # Details functionalities of plot
                  p(strong("Functionalities: "), "You are able to view polarity by mentioning of ", strong("candidate(s)"), " through the", 
@@ -107,12 +107,12 @@ my.ui <- fluidPage(
                
                # Instructions of page and how to view tweets/img
                p("Go ahead - hit the", strong( em("'Compare' ")), "button. A random tweet from each 
-                 hashtag will pop up. If you hit the", strong( em (' Generate')), " button, it will generate a 
+                 hashtag will pop up. If you hit the", strong( em (" 'Generate' ")), " button, it will generate a 
                  random photo from the Women's March twitter data set (which is separate from the tweets). While we 
                  do want to warn that", strong(em(" viewer discretion is advised, ")), "we also want you to have fun
                  perusing through!", em(" - Love the Creative Group")),
                
-               p("Data derived from: Wendy He's #MAGA and #WomensMarch Data set: ",
+               p("Data derived from: Wendy He's #MAGA and #WomensMarch data set: ",
                  em(a("https://data.world/wendyhe/tweets-on-womensmarch-and-maga"))),
       
                                       
