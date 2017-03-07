@@ -1,6 +1,7 @@
 library("dplyr")
 library("ggplot2")
 library("shiny")
+library("plotly")
 
 # Defines a new 'my.ui' variable with a 'fluidPage' layout to respond to changing data
 my.ui <- fluidPage(  
@@ -14,8 +15,8 @@ my.ui <- fluidPage(
     # Specifies content for the 'sidebarPanel'
     sidebarPanel( 
       
-      # Defines 'checkboxGroupInput' widget for user to decide what species to look at
-      checkboxGroupInput("twitter.handle", label = "Select Twitter Handle:", choices = levels(candidate.tweets$handle), selected = candidate.tweets$handle)
+      p("this is my description")
+      
 
     ),
       
@@ -24,8 +25,9 @@ my.ui <- fluidPage(
         
         # Creates tabs for user to view different forms of data either in scatter plot or table format
         tabsetPanel(type = "tabs", 
-                    tabPanel("Plot", plotOutput("plot", hover = hoverOpts(id = "hover_key")), verbatimTextOutput("plot_key_info")),
-                    tabPanel("Table", tableOutput("table"))
+                    tabPanel("Plot", plotlyOutput("tweets.plot")),
+                    tabPanel("Table", tableOutput("tweets.table"))
+
         )
       )
     )
