@@ -49,7 +49,7 @@ my.ui <- fluidPage(
                                   ),
                          
                          # Creates another tab panel in navbar      
-                         tabPanel("Tweet Summary Statisctics Table", 
+                         tabPanel("Tweet Summary Statistics Table", 
                                   
                                   # Inserts tables, headers, and descriptions into new tab  
                                   h3(strong("Summary Statistics for Clinton and Trump Tweets")),
