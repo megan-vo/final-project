@@ -51,7 +51,7 @@ my.server <- function(input, output) {
   
   # Renames the columns into more readable titles
   colnames(summary.stats.table) <- c("Hillary Clinton", "Donald Trump")
-
+  
   # Defines function 'findTweets' that takes in a data frame of one candidate's tweets and finds the specific tweets withthe max and min favorites and retweets
   findTweets <- function(candidate.data) {
     candidate.retweet.max <- max(candidate.data$retweet_count) 
@@ -92,8 +92,9 @@ my.server <- function(input, output) {
   
   # Renames columns into more readable titles
   colnames(trump.max.min) <- c("Tweet with Most Retweets", "Tweet with Least Retweets", "Tweet with Most Favorites", "Tweet with Least Favorites")
-
   
+  clinton.trump.tweets <- rbind(clinton.max.min, trump.max.min) 
+
 
   # Renders a ggplot with data from the 'candidate.tweets' file with number of retweets on x-axis, number of favorites on y-axis, and the color based on the candidate
   output$tweets.plot <- renderPlotly({ 
@@ -130,22 +131,10 @@ my.server <- function(input, output) {
   
   )
   
-  # Renders data frame holding just the specific tweets with max and min number of retweets and favorites for Clinton
-  output$clinton.table <- renderTable({
+  # Renders data frame holding just the specific tweets with max and min number of retweets and favorites for Clinton and Trump
+  output$clinton.trump.table <- renderTable({
     
-    data.frame(clinton.max.min)
-    
-    
-  },
-  
-  include.rownames = TRUE
-  
-  )
-  
-  # Renders data frame holding just the specific tweets with max and min number of retweets and favorites for Trump
-  output$trump.table <- renderTable({
-    
-    data.frame(trump.max.min)
+    data.frame(clinton.trump.tweets)
     
     
   },
@@ -153,6 +142,7 @@ my.server <- function(input, output) {
   include.rownames = TRUE
   
   )
+  
   
 }
 
