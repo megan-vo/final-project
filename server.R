@@ -7,7 +7,6 @@ library(RColorBrewer)
 library(shinythemes)
 library(plotly)
 library(dplyr)
-<<<<<<< HEAD
 
 ###############
 # Data Frames #
@@ -30,6 +29,30 @@ candidate.tweets <- read.csv("data/trump-clinton-tweets.csv")
 # Adds 'canidate' column to dataframe based on the Twitter handle
 candidate.tweets$candidate[candidate.tweets$handle == "HillaryClinton"] <- "Hillary Clinton"
 candidate.tweets$candidate[candidate.tweets$handle=="realDonaldTrump"] <- "Donald Trump"
+
+# Reads in data set for word analysis
+data <- read.csv("data/Crowdbabble_Social-Media-Analytics_Twitter-Download_Donald-Trump_7375-Tweets.csv")
+
+# Filtering data for tweet text
+corpus <- Corpus(VectorSource(data$Tweet_Text))
+
+# Text Processing to isolate text 
+corpus <- tm_map(corpus, removePunctuation) 
+corpus <- tm_map(corpus, removeNumbers)
+corpus <- tm_map(corpus, tolower) 
+corpus <- tm_map(corpus, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
+corpus <- tm_map(corpus, removeWords, stopwords(kind = "en")) 
+corpus <- tm_map(corpus, stripWhitespace) 
+corpus <- tm_map(corpus, removeWords, c("will", "thank", "realdonaldtrump", "amp",
+                                        "just", "people", "get", "now", "like", "new",
+                                        "back", "dont", "much"))  
+# THIS IS FOR THE FREQ PLOT
+# Creates document term matrix 
+dtm <- DocumentTermMatrix(corpus)  
+# Organize terms by their frequency
+freq <- colSums(as.matrix(dtm))
+# This will identify all terms that appear frequently in a data frame
+wf <- data.frame(word=names(freq), freq=freq)  
 
 ##########
 # Server #
@@ -345,47 +368,10 @@ my.server <- function(input, output) {
   include.rownames = TRUE
   
   )
-}
-
-# Creates server 
-shinyServer(my.server)
-
-
-
-
-
- 
-
-
-
-=======
-data <- read.csv("data/Crowdbabble_Social-Media-Analytics_Twitter-Download_Donald-Trump_7375-Tweets.csv")
-
-# Filtering data for tweet text
-corpus <- Corpus(VectorSource(data$Tweet_Text))
-
-# Text Processing to isolate text 
-corpus <- tm_map(corpus, removePunctuation) 
-corpus <- tm_map(corpus, removeNumbers)
-corpus <- tm_map(corpus, tolower) 
-corpus <- tm_map(corpus, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
-corpus <- tm_map(corpus, removeWords, stopwords(kind = "en")) 
-corpus <- tm_map(corpus, stripWhitespace) 
-corpus <- tm_map(corpus, removeWords, c("will", "thank", "realdonaldtrump", "amp",
-                                        "just", "people", "get", "now", "like", "new",
-                                        "back", "dont", "much"))  
-# THIS IS FOR THE FREQ PLOT
-# Creates document term matrix 
-dtm <- DocumentTermMatrix(corpus)  
-# Organize terms by their frequency
-freq <- colSums(as.matrix(dtm))
-# This will identify all terms that appear frequently in a data frame
-wf <- data.frame(word=names(freq), freq=freq)  
-
-
-# Creates server function
-my.server <- function(input, output) {
   
+  #################
+  # Word Analysis #
+  #################
   # Creates Reactive variable for the wordcloud
   terms <- reactive({
     myDTM = TermDocumentMatrix(corpus, control = list(minWordLength = 1))
@@ -412,9 +398,8 @@ my.server <- function(input, output) {
     p <- p + labs(x = "Word(s)", y = "Frequency")
     p 
   })
-  
 }
 
-# Calls the Server
+# Creates server 
 shinyServer(my.server)
->>>>>>> alexs-feature
+
