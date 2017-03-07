@@ -6,7 +6,6 @@ library(wordcloud)
 library(RColorBrewer)
 library(shinythemes)
 library(plotly)
-<<<<<<< HEAD
 library(dplyr)
 
 ###############
@@ -23,6 +22,17 @@ w.march <- read.csv("data/womensmarchtweets.csv", stringsAsFactors = F) %>%
   sample_n(300)
 march.photos <- read.csv("data/womensmarchphotos.csv", stringsAsFactors = F) %>% 
   sample_n(300)
+
+# Reads in 'trump-clinton-tweets.csv' file and stores into data frame 'candidate.tweets'
+candidate.tweets <- read.csv("data/trump-clinton-tweets.csv")
+
+# Adds 'canidate' column to dataframe based on the Twitter handle
+candidate.tweets$candidate[candidate.tweets$handle == "HillaryClinton"] <- "Hillary Clinton"
+candidate.tweets$candidate[candidate.tweets$handle=="realDonaldTrump"] <- "Donald Trump"
+
+##########
+# Server #
+##########
 
 # Defines server function
 my.server <- function(input, output) {
@@ -205,22 +215,10 @@ my.server <- function(input, output) {
     )
     HTML(paste("", list, ""), sep = "</br>") # separate the list from the paragraph text with break line
   })
-}
-
-# Creates server 
-shinyServer(my.server)
-=======
-
-# Reads in 'trump-clinton-tweets.csv' file and stores into data frame 'candidate.tweets'
-candidate.tweets <- read.csv("data/trump-clinton-tweets.csv")
-
-# Adds 'canidate' column to dataframe based on the Twitter handle
-candidate.tweets$candidate[candidate.tweets$handle == "HillaryClinton"] <- "Hillary Clinton"
-candidate.tweets$candidate[candidate.tweets$handle=="realDonaldTrump"] <- "Donald Trump"
-
-# Defines a server function for the app, taking in input and output
-my.server <- function(input, output) {
- 
+  
+  ####################
+  # Retweets & Faves #
+  ####################
   # Creates two separate data tables holding just Clinton's tweets and just Trump's tweets
   clinton.tweets <- filter(candidate.tweets, handle == "HillaryClinton")
   trump.tweets <- filter (candidate.tweets, handle == "realDonaldTrump")
@@ -241,7 +239,7 @@ my.server <- function(input, output) {
     return(stats)
     
   }
-
+  
   
   # Finds summary statistics for each candidate's tweets using 'findSummaryStats' functon
   clinton.stats <- findSummaryStats(clinton.tweets)
@@ -261,7 +259,7 @@ my.server <- function(input, output) {
     candidate.retweet.max <- max(candidate.data$retweet_count) 
     retweet.max.filtered <- filter(candidate.data, retweet_count == candidate.retweet.max)
     max.retweet.text <- retweet.max.filtered[, 'text']
-
+    
     candidate.retweet.min <- min(candidate.data$retweet_count) 
     retweet.min.filtered <- filter(candidate.data, retweet_count == candidate.retweet.min)
     min.retweet.text <- retweet.min.filtered[, 'text']
@@ -276,7 +274,7 @@ my.server <- function(input, output) {
     
     max.min.tweets <- data.frame(max.retweet.text, min.retweet.text, max.favorite.text, min.favorite.text)
     return(max.min.tweets)
-
+    
   }
   
   # Finds tweets for Clinton
@@ -298,13 +296,13 @@ my.server <- function(input, output) {
   colnames(trump.max.min) <- c("Tweet with Most Retweets", "Tweet with Least Retweets", "Tweet with Most Favorites", "Tweet with Least Favorites")
   
   clinton.trump.tweets <- rbind(clinton.max.min, trump.max.min) 
-
-
+  
+  
   # Renders a ggplot with data from the 'candidate.tweets' file with number of retweets on x-axis, number of favorites on y-axis, and the color based on the candidate
   output$tweets.plot <- renderPlotly({ 
     
     p <- ggplot(data = candidate.tweets, mapping = aes(x = retweet_count, y = favorite_count, color = candidate)) +
-    
+      
       geom_point(alpha = 0.4, size = 4) +
       
       xlim(0, 50000) +
@@ -318,9 +316,9 @@ my.server <- function(input, output) {
       scale_colour_manual("", 
                           breaks = c("Donald Trump", "Hillary Clinton"),
                           values = c("red", "blue")) +
-    
-      theme_light(base_size=14) 
       
+      theme_light(base_size=14) 
+    
   })
   
   # Renders a data frame that consists of all the information regarding summary statistics of tweets form both Clinton and Trump
@@ -346,12 +344,16 @@ my.server <- function(input, output) {
   include.rownames = TRUE
   
   )
-  
-  
 }
 
-# Creates 'shinyServer()' to be used by 'shinyApp()'
+# Creates server 
 shinyServer(my.server)
 
 
->>>>>>> aneeshas-feature
+
+
+
+ 
+
+
+
