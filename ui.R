@@ -334,8 +334,3 @@ my.ui <- fluidPage(
 
 # Make UI from my.ui
 shinyUI(my.ui)
-
-
-             
-
-

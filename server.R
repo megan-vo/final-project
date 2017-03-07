@@ -467,4 +467,3 @@ my.server <- function(input, output) {
 
 # Creates server 
 shinyServer(my.server)
-  
