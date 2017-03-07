@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Adding libraries and data set
 library(ggplot2)
 library(tm)
@@ -54,6 +53,20 @@ dtm <- DocumentTermMatrix(corpus)
 freq <- colSums(as.matrix(dtm))
 # This will identify all terms that appear frequently in a data frame
 wf <- data.frame(word=names(freq), freq=freq)  
+
+#Loads data sets for analysis from data folder
+t.data.map <- read.csv("data/trump.state.map.csv")
+c.data.map <- read.csv("data/clinton.state.map.csv")
+trump.location <- read.csv("data/trump.state.freq.csv")
+clinton.location <- read.csv("data/clinton.state.freq.csv")
+
+#Takes out unnecessary column in both trump.location csv and clinton.location csv
+trump.location$X <- NULL
+clinton.location$X <- NULL
+
+#Renames the names of the trump.location and clinton.location columns to make them more readable
+colnames(trump.location) <- c("State", "Number of Tweets")
+colnames(clinton.location) <- c("State", "Number of Tweets")
 
 ##########
 # Server #
@@ -399,38 +412,10 @@ my.server <- function(input, output) {
     p <- p + labs(x = "Word(s)", y = "Frequency")
     p 
   })
-}
-
-# Creates server 
-shinyServer(my.server)
-
-=======
-library(ggplot2) 
-library(tm) 
-library(SnowballC) 
-library(wordcloud) 
-library(RColorBrewer) 
-library(shinythemes) 
-library(plotly) 
-library(dplyr)
-
-#Loads data sets for analysis from data folder
-t.data.map <- read.csv("data/trump.state.map.csv")
-c.data.map <- read.csv("data/clinton.state.map.csv")
-trump.location <- read.csv("data/trump.state.freq.csv")
-clinton.location <- read.csv("data/clinton.state.freq.csv")
-
-#Takes out unnecessary column in both trump.location csv and clinton.location csv
-trump.location$X <- NULL
-clinton.location$X <- NULL
-
-#Renames the names of the trump.location and clinton.location columns to make them more readable
-colnames(trump.location) <- c("State", "Number of Tweets")
-colnames(clinton.location) <- c("State", "Number of Tweets")
-
-#Defines a new server variable for application named my.server
-my.server <- function(input, output){
   
+  #################
+  # Map of Tweets #
+  #################
   #Creates a map of the United States displaying the range of the number of tweets about Donald Trump per state
   output$trump.map <- renderPlotly({
     
@@ -477,8 +462,9 @@ my.server <- function(input, output){
   output$image <- renderUI({
     tags$img(src = "http://media.nbcsandiego.com/images/clinton-trump-split-funny.jpg ", width = 800, height = 450)
   })
+  
 }
 
-#Creates the server
+# Creates server 
 shinyServer(my.server)
->>>>>>> sahanas-feature
+  
