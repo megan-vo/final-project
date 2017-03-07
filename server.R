@@ -30,9 +30,8 @@ my.server <- function(input, output){
     #Creates ggplot map
     p <- ggplot(data = t.data.map) + 
       geom_polygon(aes(x = long, y = lat, group = group, fill = frequency, text = region)) +
-      coord_quickmap() 
-      #scale_fill_distiller(name="???", palette = "Set2", na.value = "grey50") +
-      #labs(title="Trump")
+      coord_quickmap() +
+      scale_fill_brewer(name = "Range of Tweets", palette = "OrRd")
     
     #Uses plotly to add interaction to map
     p <- ggplotly(p)
@@ -52,9 +51,8 @@ my.server <- function(input, output){
     #Creates ggplot map
     p <- ggplot(data = c.data.map) + 
       geom_polygon(aes(x = long, y = lat, group = group, fill = frequency, text = region)) +
-      coord_quickmap() 
-      #scale_fill_distiller(name="???", palette = "Set2", na.value = "grey50") +
-      #labs(title="Clinton")
+      coord_quickmap() +
+      scale_fill_brewer(name = "Range of Tweets", palette = "PuBu")
     
     #Uses plotly to add interaction to map
     p <- ggplotly(p)
@@ -66,6 +64,11 @@ my.server <- function(input, output){
   #Returns a table displaying the information shown on the Hillary Clinton map; Contains two columns - a State column and a number of tweets column
   output$c.per.state.table <- renderDataTable({
     return(clinton.location)
+  })
+  
+  #Prints out an image displaying Hillary Clinton and Donald Trump
+  output$image <- renderUI({
+    tags$img(src = "http://media.nbcsandiego.com/images/clinton-trump-split-funny.jpg ", width = 800, height = 450)
   })
 }
 
