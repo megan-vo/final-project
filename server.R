@@ -1,9 +1,14 @@
-library("dplyr")
-library("ggplot2")
-library("shiny")
-library("plotly")
+# Adding libraries and data set
+library(ggplot2)
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(RColorBrewer)
+library(shinythemes)
+library(plotly)
 
-# figure out how to format the info displayed when hovered
+
+
 # fix navbar format
 # add theme
 # add comments
@@ -16,8 +21,6 @@ candidate.tweets$candidate[candidate.tweets$handle=="realDonaldTrump"] <- "Donal
 my.server <- function(input, output) {
  
   
-  # FIND TWEET WITH MAX AND MIN
-
   clinton.tweets <- filter(candidate.tweets, handle == "HillaryClinton")
   trump.tweets <- filter (candidate.tweets, handle == "realDonaldTrump")
 
@@ -38,24 +41,55 @@ my.server <- function(input, output) {
   }
 
 
-clinton.stats <- findSummaryStats(clinton.tweets)
-trump.stats <- findSummaryStats(trump.tweets)
+  clinton.stats <- findSummaryStats(clinton.tweets)
+  trump.stats <- findSummaryStats(trump.tweets)
+  
+  summary.stats.table <- data.frame(clinton.stats, trump.stats)
+  row.names(summary.stats.table) <- c("Retweet Sum", "Favorites Sum", "Maxmimum Number of Retweets", "Minimum Number of Retweets", "Maximum Number of Favorites", "Minimum Number of Favorites", "Average Number of Retweets", "Average Number of Favorites") 
+  colnames(summary.stats.table) <- c("Hillary Clinton", "Donald Trump")
 
-summary.stats.table <- data.frame(clinton.stats, trump.stats)
-row.names(summary.stats.table) <- c("Retweet Sum", "Favorites Sum", "Maxmimum Number of Retweets", "Minimum Number of Retweets", "Maximum Number of Favorites", "Minimum Number of Favorites", "Average Number of Retweets", "Average Number of Favorites") 
-colnames(summary.stats.table) <- c("Hillary Clinton", "Donald Trump")
+  findTweets <- function(candidate.data) {
+    candidate.retweet.max <- max(candidate.data$retweet_count) 
+    retweet.max.filtered <- filter(candidate.data, retweet_count == candidate.retweet.max)
+    max.retweet.text <- retweet.max.filtered[, 'text']
 
+    candidate.retweet.min <- min(candidate.data$retweet_count) 
+    retweet.min.filtered <- filter(candidate.data, retweet_count == candidate.retweet.min)
+    min.retweet.text <- retweet.min.filtered[, 'text']
+    
+    candidate.favorite.max <- max(candidate.data$favorite_count) 
+    favorite.max.filtered <- filter(candidate.data, favorite_count == candidate.favorite.max)
+    max.favorite.text <- favorite.max.filtered[, 'text']
+    
+    candidate.favorite.min <- min(candidate.data$favorite_count) 
+    favorite.min.filtered <- filter(candidate.data, favorite_count == candidate.favorite.min)
+    min.favorite.text <- favorite.min.filtered[, 'text']
+    
+    max.min.tweets <- data.frame(max.retweet.text, min.retweet.text, max.favorite.text, min.favorite.text)
+    return(max.min.tweets)
+
+  }
+  
+  clinton.max.min <- findTweets(clinton.tweets) 
+  row.names(clinton.max.min) <- c("Hillary Clinton")
+  colnames(clinton.max.min) <- c("Tweet with Most Retweets", "Tweet with Least Retweets", "Tweet with Most Favorites", "Tweet with Least Favorites")
+
+  trump.max.min <- findTweets(trump.tweets)
+  row.names(trump.max.min) <- c("Donald Trump")
+  colnames(trump.max.min) <- c("Tweet with Most Retweets", "Tweet with Least Retweets", "Tweet with Most Favorites", "Tweet with Least Favorites")
 
   
+
+
   output$tweets.plot <- renderPlotly({ 
     
     p <- ggplot(data = candidate.tweets, mapping = aes(x = retweet_count, y = favorite_count, color = candidate)) +
     
       geom_point(alpha = 0.4, size = 4) +
       
-      xlim(0, 45000) +
+      xlim(0, 50000) +
       
-      ylim(0, 87500) +
+      ylim(0, 100000) +
       
       labs(title = "Twitter Retweets and Favorites: Trump vs. Clinton",
            x = "Retweets",
@@ -65,17 +99,36 @@ colnames(summary.stats.table) <- c("Hillary Clinton", "Donald Trump")
                           breaks = c("Donald Trump", "Hillary Clinton"),
                           values = c("red", "blue")) +
     
-      theme_light(base_size=14) +
+      theme_light(base_size=14) 
       
-      theme(legend.position="top", legend.direction="horizontal")
-    
-    
   })
   
 
-  output$tweets.table <- renderTable({
+  output$tweet.stats.table <- renderTable({
     
     data.frame(summary.stats.table)
+    
+    
+  },
+  
+  include.rownames = TRUE
+  
+  )
+  
+  output$clinton.table <- renderTable({
+    
+    data.frame(clinton.max.min)
+    
+    
+  },
+  
+  include.rownames = TRUE
+  
+  )
+  
+  output$trump.table <- renderTable({
+    
+    data.frame(trump.max.min)
     
     
   },
