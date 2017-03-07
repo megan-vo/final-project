@@ -1,88 +1,151 @@
-library("dplyr")
-library("ggplot2")
-library("shiny")
+# Adding libraries and data set
+library(ggplot2)
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(RColorBrewer)
+library(shinythemes)
+library(plotly)
+library(dplyr)
+
 
 my.ui <- fluidPage(
-  sidebarLayout(
-    
-    # Side panel contains interactive widgets
-    sidebarPanel(
-      checkboxGroupInput('polarity.data', label = 'Polarity of Tweets by Candidate',
-                         choices = c("Trump", "Clinton", "Bernie"), selected = "Clinton"), 
+  theme = shinythemes::shinytheme("united"),
+  navbarPage("Navbar",
+             
+             # Navbar1
+             tabPanel(
+               
+             ),
+             
+             # Navbar2
+             tabPanel(
+               
+             ),
+             
+             # Navbar3
+             tabPanel(
+               
+             ),
+             
+    # Navigation bar to polarity of tweets data        
+    tabPanel("Tweets Polarity",
+                 
+                 # Sets header of page and introductory paragraph   
+                 h3("Viewing Polarity of Tweets Mentioning Candidates"),
+                 h5(strong("Polarizing Party Politics: A Look into Polarity Data of Tweets")),
+             
+                 p("The purpose of this section is to look at the 'polarity' score given by
+                   Vik Paruchuri's data set to tweets", strong(" about "), "three 2016 Presidential candidates: Bernie Sanders,
+                   Donald Trump, and Hillary Clinton. Tweets with a polarity of", strong( ' -1 ' ), "theoretically
+                   indicates strong negativity while tweets with a polarity of", strong( ' 1 ' ), "indicates strong
+                   positivity."),
+                 
+             
+                 # Details functionalities of plot
+                 p(strong("Functionalities: "), "You are able to view polarity by mentioning of ", strong("candidate(s)"), " through the", 
+                   em(" checkboxes "), "below. You can also view a certain", strong(" range "), 
+                   "of polarity by using the", em(" slider input "), " as well change the type of histogram. You may also drag
+                   and zoom in to the data by: "),
+                 
+                 p("1. ", strong("Dragging and selecting"), "an area of the plot."),
+                 p("2. ", strong("Double clicking "), "on the area to zoom in"),
+                 p("3. ", strong("Double clicking again"), " to zoom out"),
+                 
+                 # Note about polarity/sentiment measurements
+                 p(strong( em("* A note about polarity * ") ), "Polarity measures the sentiment of the tweet
+                   by looking at keywords and associating them with select sentiments such as:
+                   positive, negative, anger, sadness, disgust, trust, etc. Polarity scores came
+                   with the data set we used."),
+                 
+                 # Actually plots out plot and allows user to double click, drag, and zoom
+                 h4("Polarity Tweets About Candidates"),
+                 plotOutput('polarity.plot', dblclick = "polar_dblclick",
+                            brush = brushOpts(
+                              id = "polar_brush",
+                              resetOnNew = TRUE)),
+                 verbatimTextOutput("polar.info"),
+             
+           # Splits widgets into three columns
+           fluidRow(
+               # Allows user to view polarity by candidate selection with checkbox input
+               column(3,
+                      checkboxGroupInput('polarity.data', label = 'Polarity of Tweets by Candidate',
+                                         choices = c("Trump", "Clinton", "Bernie"), 
+                                         selected = c("Trump", "Clinton", "Bernie"))
+               ),
+               
+               # Allows user to view polarity by range with slider input
+               column(5,
+                      sliderInput('polarity.range', label = 'Polarity Range', min = -1, 
+                                  max = 1, value = c(-1, 1), step = 0.1)
+               ),
+               
+               # Allows user to view histogram stacked or dodged with checkbox
+               column(3,
+                      checkboxInput('stacked', label = "View Stacked Histogram")
+           )
+               
+      ),
       
-      sliderInput('polarity.range', label = 'Polarity Range', min = -1, 
-                  max = 1, value = c(-1, 1), step = 0.1),
-      
-      checkboxInput('stacked', label = "View Stacked Histogram"),
-      
-      #actionButton('generate.tweet', label = "Tweets & Polarity About Candidate(s)", 
-                   #icon = icon("retweet", lib = "font-awesome")),
-      
-      textInput("image_url",
-                label = 'Paste Image URL',
-                value = "http://placehold.it/300x300"),
-      
-      actionButton('generate.march.tweet', label = "Compare #MAGA & #WomensMarch",
-                   icon = icon("retweet", lib = "font-awesome"))
+      # Prints reactive analysis based on data user is viewing
+      p(strong("Analysis: "), "The data set we are working with contains 1050 tweets (around 350 about each
+        candidate). ", textOutput("polarity.analysis") )
     ),
     
-    mainPanel(
-      tabsetPanel(type = "tabs",
-                  tabPanel("Polarity of Tweets",
-                           h3("Viewing Polarity of Tweets Mentioning Candidates"),
-                           h5(strong("Polarizing Party Politics: A Look into Polarity Data of Tweets")),
-                           p("The purpose of this section is to look at the 'polarity' score given by
-                             Vik Paruchuri's data set to tweets", strong(" about "), "three 2016 Presidential candidates: Bernie Sanders,
-                             Donald Trump, and Hillary Clinton. Tweets with a polarity of", strong( ' -1 ' ), "theoretically
-                             indicates strong negativity while tweets with a polarity of", strong( ' 1 ' ), "indicates strong
-                             positivity."),
-                           
-                           p(strong("Functionalities: "), "You are able to view polarity by mentioning of ", strong("candidate(s)"), " through the", 
-                             em(" checkboxes "), "on the sidebar. You can also view a certain", strong(" range "), 
-                             "of polarity by using the", em(" slider input."), "To generate a tweet about that candidate
-                             with the polarity score, hit the ", strong("Tweets & Polarity "), "button. You may also drag
-                             and zoom in to the data by: "),
-                           
-                           p("1. ", strong("Dragging "), "an area of the box."),
-                           p("2. ", strong("Double clicking "), "on the area to zoom in"),
-                           p("3. ", strong("Double clicking again"), " to zoom out"),
-                           
-                           p(strong( em("* A note about polarity * ") ), "Polarity measures the sentiment of the tweet
-                             by looking at keywords and associating them with select sentiments such as:
-                             positive, negative, anger, sadness, disgust, trust, etc. Polarity scores came
-                             with the data set we used."),
-                           
-                           plotOutput('polarity.plot', dblclick = "polar_dblclick",
-                                      brush = brushOpts(
-                                        id = "polar_brush",
-                                        resetOnNew = TRUE)),
-                           p(strong("Analysis: ") ),
-                           verbatimTextOutput("polar.info")),
-                  
-                  
-                  tabPanel("Extra: MAGA and the Women's March Tweets",
-                           h3("Comparing #MAGA and #WomensMarch"),
-                           h5("Did We Really Make America Great Again?"),
-                           p("In this extra", em("bonus section "), "you can compare a sample of",
-                             strong("#MAGA and #WomensMarch "), "tweets side-by-side from Jan. 20th & 21st. It's more of 
-                             a little qualitative look into Twitter data related to Trump and the Women's March."),
-                           
-                           p("Go ahead - hit the", strong( em("'Compare' ")), "button. A random tweet from each 
-                             hashtag will pop up along with a randomly generated photo (separate from the tweets)
-                             from the Women's March. Next, ", strong( em("copy and paste ") ), "the url. While we do want
-                             to warn that", em(" viewer discretion is advised, "), "we also want you to have fun
-                             perusing through!", em(" - Love the Creative Group")),
-                           
-                           p("Data derived from: Wendy He's #MAGA and #WomensMarch Data set: ",
-                             em(a("https://data.world/wendyhe/tweets-on-womensmarch-and-maga"))),
-                           
-                           verbatimTextOutput('maga.march.tweet'),
-                           htmlOutput("image"))
-      )
+    # Navbar to Bonus page
+    tabPanel("Bonus: #MAGA, #WomensMarch",
       
+      tabPanel("Extra: MAGA and the Women's March Tweets",
+               h3("Comparing #MAGA and #WomensMarch"),
+               h5(strong( "Did We Really Make America Great Again?") ),
+               p("In this extra", em("bonus section "), "you can compare a sample of",
+                 strong("#MAGA and #WomensMarch "), "tweets side-by-side from Jan. 20th & 21st. It's more of 
+                 a little qualitative look into Twitter data related to Trump and the Women's March."),
+               
+               p("Go ahead - hit the", strong( em("'Compare' ")), "button. A random tweet from each 
+                 hashtag will pop up along with a randomly generated photo (separate from the tweets)
+                 from the Women's March. Next, ", strong( em("copy and paste ") ), "the url. While we do want
+                 to warn that", strong(em(" viewer discretion is advised, ")), "we also want you to have fun
+                 perusing through!", em(" - Love the Creative Group")),
+               
+               p("Data derived from: Wendy He's #MAGA and #WomensMarch Data set: ",
+                 em(a("https://data.world/wendyhe/tweets-on-womensmarch-and-maga"))),
+                             
+                            
+     fluidRow(
+       column(6,
+              actionButton('generate.march.tweet', label = "Compare #MAGA & #WM Tweets", width = 300,
+                           icon = icon("retweet", lib = "font-awesome"), class = "btn-primary"),
+              verbatimTextOutput('maga.march.tweet'),
+              fluidRow(
+                column(9, 
+                       h4(strong("Check Out Some of Our Favorite Images: ")),
+                       p("We've selected some of our favorite random pictures from the data set
+                         for your viewing pleasure. Just ", strong(em("copy and paste")), " any of 
+                         the following urls below."),
+                      htmlOutput("url.text"),
+                       p("Just remember that once you are done viewing, please",
+                         strong( em( " delete the url ") ), "from the input.
+                         Happy clicking!"),
+                       
+                       textInput("image_url",
+                                 label = 'Paste Image URL',
+                                 value = "http://placehold.it/300x300"))
+                )
+              ),
+       
+       column(5,
+              actionButton('generate.img', label = "Generate Random Image from Women's March", width = 400,
+                           icon = icon("retweet", lib = "font-awesome"), class = "btn-secondary"),
+              htmlOutput("image"),
+              verbatimTextOutput("url"))
+       )
+     
+      )
     )
-    
-  ) 
-)
+  )
+)  
+
 
 shinyUI(my.ui)
