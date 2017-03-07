@@ -24,23 +24,23 @@ my.ui <- fluidPage(
     
     #Creates tab containing a map plot named 'Tweets about Trump per State Map'; includes click for interaction and interactive information; inlcudes textual description of map
     tabPanel('Tweets about Trump per State Map', 
-             plotlyOutput('trump.map', height = "550px",width = "1000px"), 
-             textOutput('plot1.description')),
+             p("The following visualization displays a United States map, that explains the number of tweets mentioning ", em("Donald Trump"), " per state. On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls in to. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls in to."),
+             plotlyOutput('trump.map', height = "550px",width = "1000px")), 
     
     #Creates tab containing a table named 'Tweets about Trump per State Table'; includes textual description
     tabPanel('Tweets about Trump per State Table', 
-             dataTableOutput('t.per.state.table'), 
-             textOutput('table1.description')),
+             p("The following table displays the number of tweets mentioning", em("Donald Trump"), "per state. From the table, one can find that the state with the most tweets is ", strong("Texas"), " with ", strong("652"), " tweets, and the state with the least tweets is ", strong("North Dakota"), " with only ", strong("1"), " tweet. One can also use the 'Search' bar to find the data on a specific state, or find the state that corresponds with a specific number of tweets."),
+             dataTableOutput('t.per.state.table')),
     
     #Creates tab containing a map plot named 'Tweets about Clinton per State Map'; includes click for interaction and interactive information; inlcudes textual description of map
     tabPanel('Tweets about Clinton per State Map', 
-             plotlyOutput('clinton.map', height = "550px",width = "1000px"), 
-             textOutput('plot2.description')),
-    
+             p("The following visualization displays a United States map, that explains the number of tweets mentioning ", em("Hillary Clinton"), " per state. On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls in to. States that have zero tweets are colored grey. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls in to."),
+             plotlyOutput('clinton.map', height = "550px",width = "1000px")), 
+
     #Creates tab containing a table named 'Tweets about Clinton per State Table'; includes textual description
     tabPanel('Tweets about Clinton per State Table', 
-             dataTableOutput('c.per.state.table'), 
-             textOutput('table2.description'))
+             p("The following table displays the number of tweets mentioning", em("Hillary Clinton"), "per state. From the table, one can find that the state with the most tweets is ", strong("Texas"), " with ", strong("111"), " tweets, and the states with the least tweets are ", strong("North Dakota"), " and ", strong("Nebraska"), " with each having ", strong("0"), " tweets. One can also use the 'Search' bar to find the data on a specific state, or find the state that corresponds with a specific number of tweets."),
+             dataTableOutput('c.per.state.table'))
   )
 )
 

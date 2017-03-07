@@ -41,20 +41,9 @@ my.server <- function(input, output){
     return(p)
   })
   
-  #Returns description of the Donald Trump state map
-  output$plot1.description <- renderPrint({
-    return("This ")
-  })
-  
-  #Returns a table displaying the information shown on the Donald Trump map; Contains two columns - a State column and a 
-  #number of tweets column
+  #Returns a table displaying the information shown on the Donald Trump map; Contains two columns - a State column and a number of tweets column
   output$t.per.state.table <- renderDataTable({
     return(trump.location)
-  })
-  
-  #Returns description of the Donald Trump table
-  output$table1.description <- renderPrint({
-    return("result")
   })
   
   #Creates a map of the United States displaying the range of the number of tweets about Hillary Clinton per state
@@ -74,20 +63,9 @@ my.server <- function(input, output){
     return(p)
   })
   
-  #Returns description of the Hillary Clinton state map
-  output$plot2.description <- renderPrint({
-    return("result")
-  })
-  
-  #Returns a table displaying the information shown on the Hillary Clinton map; Contains two columns - a State column and a 
-  #number of tweets column
+  #Returns a table displaying the information shown on the Hillary Clinton map; Contains two columns - a State column and a number of tweets column
   output$c.per.state.table <- renderDataTable({
     return(clinton.location)
-  })
-  
-  #Returns description of the Hillary Clinton table
-  output$table2.description <- renderPrint({
-    return("result")
   })
 }
 
