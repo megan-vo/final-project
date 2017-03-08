@@ -40,10 +40,17 @@ corpus <- Corpus(VectorSource(data$Tweet_Text))
 # Text Processing to isolate text
 corpus <- tm_map(corpus, removePunctuation)
 corpus <- tm_map(corpus, removeNumbers)
+<<<<<<< HEAD
 corpus <- tm_map(corpus, tolower)
 corpus <- tm_map(corpus, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
 corpus <- tm_map(corpus, removeWords, stopwords(kind = "en"))
 corpus <- tm_map(corpus, stripWhitespace)
+=======
+corpus <- tm_map(corpus, tolower) 
+corpus <- tm_map(corpus, function(x) iconv(x, 'UTF-8', "ASCII"))
+corpus <- tm_map(corpus, removeWords, stopwords(kind = "en")) 
+corpus <- tm_map(corpus, stripWhitespace) 
+>>>>>>> 7059be64b35d13d0a6288dd578a1d3adec2fed1b
 corpus <- tm_map(corpus, removeWords, c("will", "thank", "realdonaldtrump", "amp",
                                         "just", "people", "get", "now", "like", "new",
                                         "back", "dont", "much"))
@@ -76,9 +83,9 @@ colnames(clinton.location) <- c("State", "Number of Tweets")
 # Defines server function
 my.server <- function(input, output) {
   
-#############
-# Polarity  #
-#############
+  #############
+  # Polarity  #
+  #############
   
   # Creates reactive function that takes in user input and changes polarity tweets data frame to view
   polarity.candidate <- reactive({
@@ -138,7 +145,7 @@ my.server <- function(input, output) {
   # Generate analysis of polarity tweets based on data user is viewing 
   output$polarity.analysis <- renderText({
     data <- polarity.candidate()
-
+    
     # Grab the number of rows, max and min polarity, and the candidates those tweets are mentioning
     rows <- nrow(data)
     max <- max(data$polarity)
@@ -176,28 +183,28 @@ my.server <- function(input, output) {
     
     # Analysis of data based on reactive data
     analysis <- paste0("You are currently viewing ", rows, " tweets of 1050. The most positive score is ",
-                      round(max, 2), ", which mentions the candidate(s) ", max.candidate, ". The most negative score is 
-                      ", round(min, 2), ", and it is about the candidate(s) ", min.candidate, ". The current average
-                      polarity is ", round(avg, 1), ". We notice overall that most of the tweets had a score
-                      of or around 0. It is important to note that the data and the derivative means of the data
-                      are probably not perfect, and there are possible errors in the sentiment analysis.
-                      In this data set, however, tweets mentioning Bernie had the highest average polarity score of ", 
-                      round(summary$mean[1], 2), ". Tweets mentioning Trump had the next highest polarity average of ",
-                      round(summary$mean[3], 2), " with tweets about Clinton having an average score of ", round(summary$mean[2],
-                                                                                                                 2),
-                      ". We would have to do further statistical analysis to see if the differences are actually
-                      significant enough to say that Bernie tweeters on average had more positive things to say,
-                      and that tweeters mentioning Trump had more positive sentiments than tweets about Hillary. It
-                      does not seem like there is much variance in the average polarity of tweets about each candidate,
-                      as each had a distribution including very negative, neutral, and positive tweets. This could be
-                      indicative of our especially divisive election year and reflective of our diverse sentiments
-                      as a nation about our candidates (or at least within the Twitter connected population).")
+                       round(max, 2), ", which mentions the candidate(s) ", max.candidate, ". The most negative score is 
+                       ", round(min, 2), ", and it is about the candidate(s) ", min.candidate, ". The current average
+                       polarity is ", round(avg, 1), ". We notice overall that most of the tweets had a score
+                       of or around 0. It is important to note that the data and the derivative means of the data
+                       are probably not perfect, and there are possible errors in the sentiment analysis.
+                       In this data set, however, tweets mentioning Bernie had the highest average polarity score of ", 
+                       round(summary$mean[1], 2), ". Tweets mentioning Trump had the next highest polarity average of ",
+                       round(summary$mean[3], 2), " with tweets about Clinton having an average score of ", round(summary$mean[2],
+                                                                                                                  2),
+                       ". We would have to do further statistical analysis to see if the differences are actually
+                       significant enough to say that Bernie tweeters on average had more positive things to say,
+                       and that tweeters mentioning Trump had more positive sentiments than tweets about Hillary. It
+                       does not seem like there is much variance in the average polarity of tweets about each candidate,
+                       as each had a distribution including very negative, neutral, and positive tweets. This could be
+                       indicative of our especially divisive election year and reflective of our diverse sentiments
+                       as a nation about our candidates (or at least within the Twitter connected population).")
     return(analysis)
   })
   
-#########
-# Bonus #
-#########
+  #########
+  # Bonus #
+  #########
   
   # Generate a new image url if action button is clicked
   img.url <- reactive({
@@ -217,7 +224,7 @@ my.server <- function(input, output) {
         sample_n(1)
       tweet.march <- w.march %>% 
         sample_n(1)
-
+      
       # Format text of tweets
       tweet.maga <- paste("#MAGA: ", tweet.maga$text)
       tweet.march <- paste("#WomensMarch: ", tweet.march$text)
@@ -233,7 +240,7 @@ my.server <- function(input, output) {
     if(input$image_url == "http://placehold.it/300x300" || input$image_url == "") {
       tags$img(src = img.url()$image, width = 400, height = 400) 
       
-    # If user chooses to copy paste, generates chosen url image
+      # If user chooses to copy paste, generates chosen url image
     } else {
       tags$img(src = input$image_url, width = 400, height = 400)
     }
@@ -424,7 +431,8 @@ my.server <- function(input, output) {
     p <- ggplot(data = t.data.map) + 
       geom_polygon(aes(x = long, y = lat, group = group, fill = frequency, text = region)) +
       coord_quickmap() +
-      scale_fill_brewer(name = "Range of Tweets", palette = "OrRd")
+      scale_fill_brewer(name = "Range of Tweets", palette = "OrRd") +
+      theme_minimal()
     
     #Uses plotly to add interaction to map
     p <- ggplotly(p)
@@ -445,7 +453,8 @@ my.server <- function(input, output) {
     p <- ggplot(data = c.data.map) + 
       geom_polygon(aes(x = long, y = lat, group = group, fill = frequency, text = region)) +
       coord_quickmap() +
-      scale_fill_brewer(name = "Range of Tweets", palette = "PuBu")
+      scale_fill_brewer(name = "Range of Tweets", palette = "PuBu") +
+      theme_minimal()
     
     #Uses plotly to add interaction to map
     p <- ggplotly(p)
