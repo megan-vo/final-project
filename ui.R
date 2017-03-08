@@ -18,6 +18,16 @@ my.ui <- fluidPage(
   navbarPage(
     "Navbar",
     
+    navbarMenu("Home",
+               tabPanel("Home",
+                        p("Our thesis goes here: ")
+                        
+                        ),
+               tabPanel("About",
+                        p("Who are we?")
+                        )
+    ),
+               
     
     # Creates a tab panel in navbar  
     tabPanel("Popularity of Tweets", 

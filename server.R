@@ -423,7 +423,8 @@ my.server <- function(input, output) {
     p <- ggplot(data = t.data.map) + 
       geom_polygon(aes(x = long, y = lat, group = group, fill = frequency, text = region)) +
       coord_quickmap() +
-      scale_fill_brewer(name = "Range of Tweets", palette = "OrRd")
+      scale_fill_brewer(name = "Range of Tweets", palette = "OrRd") +
+      theme_minimal()
     
     #Uses plotly to add interaction to map
     p <- ggplotly(p)
@@ -444,7 +445,8 @@ my.server <- function(input, output) {
     p <- ggplot(data = c.data.map) + 
       geom_polygon(aes(x = long, y = lat, group = group, fill = frequency, text = region)) +
       coord_quickmap() +
-      scale_fill_brewer(name = "Range of Tweets", palette = "PuBu")
+      scale_fill_brewer(name = "Range of Tweets", palette = "PuBu") +
+      theme_minimal()
     
     #Uses plotly to add interaction to map
     p <- ggplotly(p)
