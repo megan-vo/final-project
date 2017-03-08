@@ -40,7 +40,7 @@ corpus <- Corpus(VectorSource(data$Tweet_Text))
 corpus <- tm_map(corpus, removePunctuation) 
 corpus <- tm_map(corpus, removeNumbers)
 corpus <- tm_map(corpus, tolower) 
-corpus <- tm_map(corpus, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
+corpus <- tm_map(corpus, function(x) iconv(x, 'UTF-8', "ASCII"))
 corpus <- tm_map(corpus, removeWords, stopwords(kind = "en")) 
 corpus <- tm_map(corpus, stripWhitespace) 
 corpus <- tm_map(corpus, removeWords, c("will", "thank", "realdonaldtrump", "amp",
