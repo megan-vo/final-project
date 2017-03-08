@@ -1,7 +1,8 @@
 # Adding libraries 
 library(ggplot2)
+library(shiny)
 library(tm)
-library(SnowballC)
+#library(SnowballC)
 library(wordcloud)
 library(RColorBrewer)
 library(shinythemes)
@@ -104,7 +105,7 @@ my.ui <- fluidPage(
              
 
       tabPanel("Word Analysis",
-               # Creates side panel 
+               # Creates side panel
                sidebarPanel(
                  # Min Freq Slider Widget
                  sliderInput("freq",
@@ -115,7 +116,7 @@ my.ui <- fluidPage(
                              "Maximum Number of Words",
                              min = 1,  max = 300,  value = 100)
                ),
-               
+
                # Creates Main Panel
                mainPanel(
                  tabsetPanel(
@@ -123,20 +124,20 @@ my.ui <- fluidPage(
                    tabPanel("Word Cloud",
                             h3('Trump\'s Tweets Word Frequency Cloud'),
                             p('The purpose of this section is to look at the',
-                              em("word choice"), 'and the', em('frequency'), 
-                              'of that word choice with regards to over', strong('7,000'), 'of Donald Trump\'s', 
+                              em("word choice"), 'and the', em('frequency'),
+                              'of that word choice with regards to over', strong('7,000'), 'of Donald Trump\'s',
                               strong('tweets.'),
-                              'This is displayed by a', em('word cloud,'), ' 
+                              'This is displayed by a', em('word cloud,'), '
                               the words are colorized for visual diferentiation and
-                              will display as larger if they are more frequently used. By 
+                              will display as larger if they are more frequently used. By
                               looking at the word cloud c'),
-                            p('', strong('Functionalities:'), 'You are able to 
-                              filter for the minimum amount of times a word appears in set of tweets 
+                            p('', strong('Functionalities:'), 'You are able to
+                              filter for the minimum amount of times a word appears in set of tweets
                               as well as filter for the maximum amount of words in the cloud via the
                               widgets on the side.'),
                             plotOutput("plot.cloud", width = "100%"),
                             p(strong("Observations:"), "By looking at the word cloud it is easy to see that the largest and most frequent word by far
-                              is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that 
+                              is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that
                               our President must be", em("very "), " concerned with his public perception. It also shows that his word choice is
                               usually rather blunt and abrasive, one the requires a good amount of imagination to take any relevant or coherent meaning from it."),
                             p('The data set for both the cloud and the plot was derived from - https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/')
@@ -144,17 +145,17 @@ my.ui <- fluidPage(
                    # Creates Frequency Plot Tab
                    tabPanel("Frequency Plot",
                             h3("Trump\'s Tweets Word Frequency Bar Plot"),
-                            p('The purpose of this section is too look at the most frequnently 
+                            p('The purpose of this section is too look at the most frequnently
                               occuring words in Trump\'s tweets and their frequency.'),
-                            p('', strong('Functionalities:'), 'You are able to 
+                            p('', strong('Functionalities:'), 'You are able to
                               hover over each bar of the graph to get specific information.'),
                             plotlyOutput("graph"),
                             p(strong("Observations:"), "By looking at the word cloud it is easy to see that the largest and most frequent word by far
-                              is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that 
+                              is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that
                               our President must be", em("very "), " concerned with his public perception. It also shows that his word choice is
                               usually rather blunt and abrasive, one the requires a good amount of imagination to take any relevant or coherent meaning from it.")
                             )
-                   
+
                             )
                             )
                             ),
@@ -168,29 +169,37 @@ my.ui <- fluidPage(
                         tabsetPanel(
                           
                           #Creates tab containing a map plot named 'Tweets about Trump per State Map'; includes click for interaction and interactive information; inlcudes textual description of map
-                          tabPanel('Tweets about Trump per State Map', 
+                          tabPanel('Tweets about Trump State Map', 
+                                   h3("Analyzing Number of Tweets Mentioning Donald Trump per State"),
                                    p("The following visualization displays a United States map, that explains the number of tweets mentioning ", em("Donald Trump"), " per state. On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls in to. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls in to."),
-                                   plotlyOutput('trump.map', height = "550px",width = "1000px")), 
+                                   plotlyOutput('trump.map', height = "550px",width = "1000px"),
+                                   p("The information from the plot above comes from the following dataset: https://www.dataquest.io/blog/matplotlib-tutorial/.")), 
                           
                           #Creates tab containing a table named 'Tweets about Trump per State Table'; includes textual description
                           tabPanel('Tweets about Trump per State Table', 
+                                   h3("Number of Tweets Mentioning Donald Trump per State Data Table"),
                                    p("The following table displays the number of tweets mentioning", em("Donald Trump"), "per state. From the table, one can find that the state with the most tweets is ", strong("Texas"), " with ", strong("652"), " tweets, and the state with the least tweets is ", strong("North Dakota"), " with only ", strong("1"), " tweet. One can also use the 'Search' bar to find the data on a specific state, or find the state that corresponds with a specific number of tweets."),
                                    dataTableOutput('t.per.state.table')),
                           
                           #Creates tab containing a map plot named 'Tweets about Clinton per State Map'; includes click for interaction and interactive information; inlcudes textual description of map
-                          tabPanel('Tweets about Clinton per State Map', 
+                          tabPanel('Tweets about Clinton State Map', 
+                                   h3("Analyzing Number of Tweets Mentioning Hillary Clinton per State"),
                                    p("The following visualization displays a United States map, that explains the number of tweets mentioning ", em("Hillary Clinton"), " per state. On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls in to. States that have zero tweets are colored grey. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls in to."),
-                                   plotlyOutput('clinton.map', height = "550px",width = "1000px")), 
+                                   plotlyOutput('clinton.map', height = "550px",width = "1000px"),
+                                   p("The information from the plot above comes from the following dataset: https://www.dataquest.io/blog/matplotlib-tutorial/.")), 
                           
                           #Creates tab containing a table named 'Tweets about Clinton per State Table'; includes textual description
                           tabPanel('Tweets about Clinton per State Table', 
+                                   h3("Number of Tweets Mentioning Hillary Clinton per State Data Table"),
                                    p("The following table displays the number of tweets mentioning", em("Hillary Clinton"), "per state. From the table, one can find that the state with the most tweets is ", strong("Texas"), " with ", strong("111"), " tweets, and the states with the least tweets are ", strong("North Dakota"), " and ", strong("Nebraska"), " with each having ", strong("0"), " tweets. One can also use the 'Search' bar to find the data on a specific state, or find the state that corresponds with a specific number of tweets."),
                                    dataTableOutput('c.per.state.table')),
                           
                           #Creates tab containing a picture and analysis comparing the two map visualizations named 'Analysis'
                           tabPanel('Analysis',
+                                   h3("Comparing Number of Tweets Mentioning Presidential Candidates per State"),
                                    p("By comparing the two map visualizations, one can see that the states that tweeted more frequently about ", em("Donald Trump"), " tended to have much fewer tweets mentioning ", em("Hillary Clinton"), " and vice versa. For example, states around the middle of the country (i.e. Oklahoma, Nebraska), have a large number of tweets mentioning ", em("Donald Trump"), " however these states have a much smaller number of tweets mentioning ", em("Hillary Clinton"), ". These results reflect the outcome of the 2016 Presidential Election, as the states in the middle of the nation had a majority vote for ", strong("Donald Trump"), " while the states on the East and West Coast had a majority vote for ", strong("Hillary Clinton"), "."),
-                                   htmlOutput('t.c.image'))
+                                   htmlOutput('t.c.image'),
+                                   p("This picture comes from the following source: http://media.nbcsandiego.com/images/clinton-trump-split-funny.jpg"))
                         )
                       )
                       
