@@ -190,7 +190,7 @@ my.ui <- fluidPage(
                           #Creates tab containing a picture and analysis comparing the two map visualizations named 'Analysis'
                           tabPanel('Analysis',
                                    p("By comparing the two map visualizations, one can see that the states that tweeted more frequently about ", em("Donald Trump"), " tended to have much fewer tweets mentioning ", em("Hillary Clinton"), " and vice versa. For example, states around the middle of the country (i.e. Oklahoma, Nebraska), have a large number of tweets mentioning ", em("Donald Trump"), " however these states have a much smaller number of tweets mentioning ", em("Hillary Clinton"), ". These results reflect the outcome of the 2016 Presidential Election, as the states in the middle of the nation had a majority vote for ", strong("Donald Trump"), " while the states on the East and West Coast had a majority vote for ", strong("Hillary Clinton"), "."),
-                                   htmlOutput('image'))
+                                   htmlOutput('t.c.image'))
                         )
                       )
                       

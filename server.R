@@ -459,7 +459,7 @@ my.server <- function(input, output) {
   })
   
   #Prints out an image displaying Hillary Clinton and Donald Trump
-  output$image <- renderUI({
+  output$t.c.image <- renderUI({
     tags$img(src = "http://media.nbcsandiego.com/images/clinton-trump-split-funny.jpg ", width = 800, height = 450)
   })
   
