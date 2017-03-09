@@ -29,7 +29,8 @@ my.ui <- fluidPage(
                         p("Trump’s online presence has been especially combative and", em(" present "), " — for lack of a better word — and it is with this in mind that we took interest
                           in looking at some Twitter data to analyze aspects of what people and the
                           candidates had to say on social media. We hope that this will be of interest to the general public,
-                          specifically individuals intrigued with politics and social media."),
+                          specifically individuals intrigued with politics and social media. It also may be an area of exploration for election forecasters
+                          looking at how social media affects or explains trends in politics."),
                         p("In our core project sections, you will find information about", strong(" Trump and Clinton’s favorites and retweets, grammar analysis of Trump’s tweets, US maps of tweets mentioning both Clinton and 
                           Trump, and polarity of tweets mentioning presidential candidates."), 
                           " In addition, we have a", strong(" bonus "), "section that looks at #MAGA (Make America Great Again) and #WomensMarch tweets for a more qualitative look into political viewpoints on social media."),
@@ -78,7 +79,14 @@ my.ui <- fluidPage(
                           )
                         )
 
-               )
+               ),
+               tabPanel("Data Sets",
+                        h3("List of Data Sets We Used"),
+                        p("Trump vs. Clinton Tweets' Faves and Retweets: ", a("https://www.kaggle.com/benhamner/clinton-trump-tweets")),
+                        p("Tweets about Candidates for Map and Polarity: ", a("https://www.dataquest.io/blog/matplotlib-tutorial/")),
+                        p("Trump Tweets for Word Analysis: ", a("https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/")),
+                        p("#MAGA & #WomensMarch Tweets/Images: ", a("https://data.world/wendyhe/tweets-on-womensmarch-and-maga"))
+                        )
     ),
     
     
