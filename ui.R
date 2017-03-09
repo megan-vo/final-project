@@ -26,7 +26,7 @@ my.ui <- fluidPage(
                         h4("Background and Overall Analysis: "),
                         p("This past election year has been many things: significant, tumultuous, unprecedented - all depending on how you see it. From a technological standpoint,
                           this election has been uniquely marked by widespread", strong(" social media "), 
-                          "use about politics not just from those concerned with politics but from the candidates themselves."),
+                          "use about politics, not just from those concerned with politics but from the candidates themselves."),
                         p("Trump’s online presence has been especially combative and", em(" present "), " — for lack of a better word — and it is with this in mind that we took interest
                           in looking at some Twitter data to analyze aspects of what people and the
                           candidates had to say on social media. We hope that this will be of interest to the general public,
