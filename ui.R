@@ -19,6 +19,7 @@ my.ui <- fluidPage(
   navbarPage(
     "Trump's Twitter Tussle",
     
+    # Create drop down navbar menu for 'Home', 'about', and 'data sets'
     navbarMenu("Home",
                tabPanel("Home",
                         h3(strong("Let's Tweet Politics")),
@@ -50,11 +51,15 @@ my.ui <- fluidPage(
                         htmlOutput('home.image')
                         
                ),
+               
+               # "About" drop down tab
                tabPanel("About",
                         h3(strong("Get To Know Us!")),
                         p("We are a group of students at the University of Washington passionate about
                           technology and data. We had a lot of fun working on this project for our Informatics class and hope you 
                           enjoy perusing through."),
+                        
+                        # Create two columns for bios
                         fluidRow(
                           column(6,
                                  h5(strong("Aneesha Nanda")),
@@ -62,12 +67,16 @@ my.ui <- fluidPage(
                                  p("Aneesha Nanda is a sophomore at the University of Washington, intending to study both Informatics and Public Health. 
                                    A fun fact about Aneesha is that she is a part of the Bollywood dance team on campus."),
                                  h5(strong("Megan Bui")),
+                                 
+                                 # Add picture
                                  img(src='megan.png', width = 200, height = 200),
                                  p("Megan Bui is a sophomore at the University of Washington studying Computer Science and Sociology. 
                                    A fun fact about Megan is that she is a part of a band with some of her fellow CSE 14x TAs.")
                           ),
                           column(6,
                                  h5(strong("Alex Alspaugh")),
+                                 
+                                 # Add picture
                                  img(src='alexpic.png', width = 200, height = 200),
                                  p("Alex Alspaugh is a freshman at the University of Washington intending to study Informatics.
                                    He plans to focus on human computer interaction and user centered design, and a fun fact about Alex
@@ -80,6 +89,8 @@ my.ui <- fluidPage(
                         )
 
                ),
+               
+               # Add data sets tab to drop down menu.
                tabPanel("Data Sets",
                         h3("List of Data Sets We Used"),
                         p("Trump vs. Clinton Tweets' Faves and Retweets: ", a("https://www.kaggle.com/benhamner/clinton-trump-tweets")),
@@ -415,10 +426,10 @@ my.ui <- fluidPage(
                                verbatimTextOutput("url"))
                       )
                       
-                      )
+      )
     )
-    )
-    )  
+  )
+)  
 
 # Make UI from my.ui
 shinyUI(my.ui)
