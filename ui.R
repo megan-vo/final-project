@@ -42,6 +42,7 @@ my.ui <- fluidPage(
                           ),
                           column(6,
                                  h5(strong("Alex Alspaugh")),
+                                 img(src='alexpic.png', width = 200, height = 200),
                                  p("Alex Alspaugh is a freshman at the University of Washington intending to study Informatics.
                                    He plans to focus on human computer interaction and user centered design, and a fun fact about Alex
                                    is that he enjoys photography as a hobby."),

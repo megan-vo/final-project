@@ -488,6 +488,7 @@ my.server <- function(input, output) {
              width = 200, height = 200)
   })
   
+  
 }
 
 # Creates server 
