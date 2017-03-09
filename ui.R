@@ -32,11 +32,12 @@ my.ui <- fluidPage(
                           enjoy perusing through."),
                         fluidRow(
                           column(6,
-                                 h5(strong("Aneesha Ananda")),
+                                 h5(strong("Aneesha Nanda")),
                                  htmlOutput('aneesha'),
                                  p("Aneesha Nanda is a sophomore at the University of Washington, intending to study both Informatics and Public Health. 
                                    A fun fact about Aneesha is that she is a part of the Bollywood dance team on campus."),
                                  h5(strong("Megan Bui")),
+                                 img(src='megan.png', width = 200, height = 200),
                                  p("Megan Bui is a sophomore at the University of Washington studying Computer Science and Sociology. 
                                    A fun fact about Megan is that she is a part of a band with some of her fellow 14x TAs.")
                           ),
