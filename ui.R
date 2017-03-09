@@ -23,12 +23,12 @@ my.ui <- fluidPage(
                tabPanel("Home",
                         p("Our thesis goes here: ")
                         
-                        ),
+               ),
                tabPanel("About",
                         p("Who are we?")
-                        )
+               )
     ),
-               
+    
     
     # Creates a tab panel in navbar  
     tabPanel("Popularity of Tweets", 
@@ -114,19 +114,19 @@ my.ui <- fluidPage(
                                   ),
     
     
-
-      tabPanel("Word Analysis",
-               # Creates side panel
-               sidebarPanel(
-                 # Min Freq Slider Widget
-                 sliderInput("freq",
-                             "Minimum Frequency",
-                             min = 50,  max = 1000, value = 100),
-                 # Max words Slider widget
-                 sliderInput("max",
-                             "Maximum Number of Words",
-                             min = 1,  max = 300,  value = 100)
-               ),
+    
+    tabPanel("Word Analysis",
+             # Creates side panel
+             sidebarPanel(
+               # Min Freq Slider Widget
+               sliderInput("freq",
+                           "Minimum Frequency",
+                           min = 50,  max = 1000, value = 100),
+               # Max words Slider widget
+               sliderInput("max",
+                           "Maximum Number of Words",
+                           min = 1,  max = 300,  value = 100)
+             ),
              
              # Creates Main Panel
              mainPanel(
@@ -163,18 +163,17 @@ my.ui <- fluidPage(
                           p(strong("Observations:"), "By looking at the word cloud it is easy to see that the largest and most frequent word by far
                             is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that 
                             our President must be", em("very "), " concerned with his public perception. It also shows that his word choice is
-
                             usually rather blunt and abrasive, one the requires a good amount of imagination to take any relevant or coherent meaning from it."),
                           p('The data set for both the cloud and the plot was derived from - https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/')
                           )
-
-                           
-                )
-
                  
-            )
-        
-    ),
+                 
+                          )
+               
+               
+                 )
+             
+                 ),
     
     # Navbar3
     tabPanel("Map of Tweets about Candidates",
@@ -220,10 +219,10 @@ my.ui <- fluidPage(
                             were scraped from May 10th, 2016 data."),
                           htmlOutput('t.c.image'),
                           p("This picture comes from the following source: http://media.nbcsandiego.com/images/clinton-trump-split-funny.jpg"))
-               )
+                 )
              )
              
-    ),
+             ),
     
     # Navigation bar to polarity of tweets data        
     tabPanel("Tweets Polarity",
