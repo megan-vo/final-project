@@ -183,7 +183,7 @@ my.server <- function(input, output) {
                        round(max, 2), ", which mentions the candidate(s) ", max.candidate, ". The most negative score is 
                        ", round(min, 2), ", and it is about the candidate(s) ", min.candidate, ". The current average
                        polarity is ", round(avg, 1), ". We notice overall that most of the tweets had a score
-                       of or around 0. It is important to note that the data and the derivative means of the data
+                       of, or around 0. It is important to note that the data and the derivative means of the data
                        are probably not perfect, and there are possible errors in the sentiment analysis.
                        In this data set, however, tweets mentioning Bernie had the highest average polarity score of ", 
                        round(summary$mean[1], 2), ". Tweets mentioning Trump had the next highest polarity average of ",

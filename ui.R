@@ -49,7 +49,7 @@ my.ui <- fluidPage(
                                  h5(strong("Sahana Vishwanath")),
                                  htmlOutput('sahana'),
                                  p("Sahana Vishwanath is a sophomore at the University of Washington, intending to study Informatics with a concentration in Data Science. 
-                                   A fun fact about Sahana is that she has been trained in multiple Indian dance forms")
+                                   A fun fact about Sahana is that she has been trained in multiple Indian dance forms.")
                           )
                         )
 
@@ -94,7 +94,7 @@ my.ui <- fluidPage(
                                   
                                   p("The table below shows", em("summary statistics"), "with regards to tweets from Donald Trump and Hillary 
                                     Clinton. Data includes the total, maximum, and minimum number of favorites and retweets each 
-                                    candidate got along with the average number of retweets and favorites received. "),
+                                    candidate got, along with the average number of retweets and favorites received. "),
                                   
                                   br(),
                                   
@@ -117,14 +117,14 @@ my.ui <- fluidPage(
                                   
                                   h3(strong("Specific Tweets")),
                                   
-                                  p("The tables below shows the", em("specific tweets"), "from Donald Trummp and Hillary Clinton's twitter handles 
+                                  p("The table below shows the", em("specific tweets"), "from Donald Trummp and Hillary Clinton's twitter handles 
                                     that received the maximum and minimum number of favorites and retweets."),
                                   
                                   br(),
                                   
                                   p(strong("Observations: ")),
                                   p("1. In both cases, the tweets that received the most amount of retweets also received the most number of favorites."),
-                                  p("2. Tweets with the most favorites and retweets for both Trump and Clinton were aimed in a negative manner towards."), 
+                                  p("2. Tweets with the most favorites and retweets for both Trump and Clinton were aimed in a negative manner towards Clinton."), 
                                   p("3. Ironically, the tweet with the least number of retweets for Clinton's account had to do with women's power which 
                                     could be seen as commentary on the world's opinion regarding women in authoratative positions."), 
                                   
@@ -165,32 +165,32 @@ my.ui <- fluidPage(
                             em("word choice"), 'and the', em('frequency'), 
                             'of that word choice with regards to over', strong('7,000'), 'of Donald Trump\'s', 
                             strong('tweets.'),
-                            'This is displayed by a', em('word cloud,'), ' 
-                            the words are colorized for visual diferentiation and
+                            'This is displayed by a', em('word cloud '), ' 
+                            in which the words are colorized for visual diferentiation and
                             will display as larger if they are more frequently used.'),
                           p('', strong('Functionalities:'), 'You are able to 
-                            filter for the minimum amount of times a word appears in set of tweets 
+                            filter for the minimum amount of times a word appears in a set of tweets 
                             as well as filter for the maximum amount of words in the cloud via the
                             widgets on the side.'),
                           plotOutput("plot.cloud", width = "100%"),
                           p(strong("Observations:"), "By looking at the word cloud it is easy to see that the largest and most frequent word by far
-                            is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that 
+                            is, well, Trump. This is due to the amount of times Trump quoted a tweet with his own name in it. This goes to show that 
                             our President must be", em("very "), " concerned with his public perception. It also shows that his word choice is
-                            usually rather blunt and abrasive, one the requires a good amount of imagination to take any relevant or coherent meaning from it."),
+                            usually rather blunt and abrasive, one that requires a good amount of imagination to take any relevant or coherent meaning from it."),
                           p('The data set for both the cloud and the plot was derived from - https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/')
                           ),
                  # Creates Frequency Plot Tab
                  tabPanel("Frequency Plot",
                           h3("Trump\'s Tweets Word Frequency Bar Plot"),
-                          p('The purpose of this section is too look at the most frequnently 
+                          p('The purpose of this section is to look at the most frequently 
                             occuring words in Trump\'s tweets and their frequency.'),
                           p('', strong('Functionalities:'), 'You are able to 
                             hover over each bar of the graph to get specific information.'),
                           plotlyOutput("graph"),
                           p(strong("Observations:"), "By looking at the word cloud it is easy to see that the largest and most frequent word by far
-                            is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that 
+                            is, well, Trump. This is due to the amount of times Trump quoted a tweet with his own name in it. This goes to show that 
                             our President must be", em("very "), " concerned with his public perception. It also shows that his word choice is
-                            usually rather blunt and abrasive, one the requires a good amount of imagination to take any relevant or coherent meaning from it."),
+                            usually rather blunt and abrasive, one that requires a good amount of imagination to take any relevant or coherent meaning from it."),
                           p('The data set for both the cloud and the plot was derived from - https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/')
                           )
                  
@@ -213,7 +213,7 @@ my.ui <- fluidPage(
                  #Creates tab containing a map plot named 'Tweets about Trump per State Map'; includes click for interaction and interactive information; inlcudes textual description of map
                  tabPanel('Tweets about Trump State Map', 
                           h3("Analyzing Number of Tweets Mentioning Donald Trump per State"),
-                          p("The following visualization displays a United States map, that explains the number of tweets mentioning ", em("Donald Trump"), " per state. On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls in to. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls in to."),
+                          p("The following visualization displays a United States map that explains the number of tweets per state mentioning ", em("Donald Trump"), ". On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls into. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls into."),
                           plotlyOutput('trump.map', height = "550px",width = "1000px"),
                           p("The information from the plot above comes from the following dataset: https://www.dataquest.io/blog/matplotlib-tutorial/.")), 
                  
@@ -226,7 +226,7 @@ my.ui <- fluidPage(
                  #Creates tab containing a map plot named 'Tweets about Clinton per State Map'; includes click for interaction and interactive information; inlcudes textual description of map
                  tabPanel('Tweets about Clinton State Map', 
                           h3("Analyzing Number of Tweets Mentioning Hillary Clinton per State"),
-                          p("The following visualization displays a United States map, that explains the number of tweets mentioning ", em("Hillary Clinton"), " per state. On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls in to. States that have zero tweets are colored grey. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls in to."),
+                          p("The following visualization displays a United States map that explains the number of tweets per state mentioning ", em("Hillary Clinton"), ". On the right side of the state map, one can find a legend, which displays the color that corresponds with a specific range of tweets. By comparing the color of each state with the various colors displayed in the legend, one can identify the range each state falls into. States that have zero tweets are colored grey. This visualization also has an interactive feature: by ", em("hovering"), " over a state, one can discover the ", strong("name of the state"), ", as well as the ", strong("range"), " the state falls into."),
                           plotlyOutput('clinton.map', height = "550px",width = "1000px"),
                           p("The information from the plot above comes from the following dataset: https://www.dataquest.io/blog/matplotlib-tutorial/.")), 
                  
@@ -268,8 +268,8 @@ my.ui <- fluidPage(
              # Details functionalities of plot
              p(strong("Functionalities: "), "You are able to view polarity by mentioning of ", strong("candidate(s)"), " through the", 
                em(" checkboxes "), "below. You can also view a certain", strong(" range "), 
-               "of polarity by using the", em(" slider input "), " as well change the type of histogram. You may also drag
-               and zoom in to the data by: "),
+               "of polarity by using the", em(" slider input "), " as well as change the type of histogram. You may also drag
+               and zoom into the data by: "),
              
              p("1. ", strong("Dragging and selecting"), "an area of the plot."),
              p("2. ", strong("Double clicking "), "on the area to zoom in"),
@@ -323,7 +323,7 @@ my.ui <- fluidPage(
              tabPanel("Extra: MAGA and the Women's March Tweets",
                       h3("Comparing #MAGA and #WomensMarch"),
                       h5(strong( "Did We Really Make America Great Again?") ),
-                      p("In this extra", em("bonus section "), "you can compare a sample of",
+                      p("In this extra", em("bonus section, "), "you can compare a sample of",
                         strong("#MAGA and #WomensMarch "), "tweets side-by-side from Jan. 20th & 21st. It's more of 
                         a little qualitative look into Twitter data related to Trump and the Women's March."),
                       
