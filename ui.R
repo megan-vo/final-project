@@ -21,7 +21,31 @@ my.ui <- fluidPage(
     
     navbarMenu("Home",
                tabPanel("Home",
-                        p("Our thesis goes here: "),
+                        h3(strong("Let's Tweet Politics")),
+                        h4("Background and Overall Analysis: "),
+                        p("This past election year has been many things: significant, tumultuous, unprecedented - all depending on how you see it. From a technological standpoint,
+                          this election has been uniquely marked by widespread", strong(" social media "), 
+                          "use about politics not just from those concerned with politics but from the candidates themselves."),
+                        p("Trump’s online presence has been especially combative and", em(" present "), " — for lack of a better word — and it is with this in mind that we took interest
+                          in looking at some Twitter data to analyze aspects of what people and the
+                          candidates had to say on social media. We hope that this will be of interest to the general public,
+                          specifically individuals intrigued with politics and social media."),
+                        p("In our core project sections, you will find information about", strong(" Trump and Clinton’s favorites and retweets, grammar analysis of Trump’s tweets, US maps of tweets mentioning both Clinton and 
+                          Trump, and polarity of tweets mentioning presidential candidates."), 
+                          " In addition, we have a", strong(" bonus "), "section that looks at #MAGA (Make America Great Again) and #WomensMarch tweets for a more qualitative look into political viewpoints on social media."),
+                        p("We found that Trump’s tweets from January 2016 to September 2016 were", em(" more popular "), "than Clinton’s tweets in terms of favorites and retweets. 
+                          This could be due to word choice of each candidate’s tweets, and when we look at Trump’s grammar frequency, we do see that it is marked by abrasive and blunt 
+                          language. If you take into account Twitter’s inherent ‘DNA’ marked by bursts of", strong( em( " short, 140-characters,") ), " it may be that attention-grabbing, 
+                          quick posts are the tweets that capture the most attention. It brings into question whether social media platforms actually foster political conversation or 
+                          verge on short bits of loud mess (or both)."),
+                        p("We also decided to look at the polarity of tweets", em(" about "), "these candidates and found that the three presidential candidates we looked at for this section 
+                          (Sanders, Clinton, and Trump) had distributions of very positive, neutral, and very negative tweets. We mapped out where these tweets were coming from and found out 
+                          that states that tweeted more about Trump were less likely to tweet about Hillary and vice versa. This reflects the outcome of the 2016 Presidential Election, which 
+                          is interesting because our data is a snapshot of one day’s worth of Twitter scraping in May 2016."),
+                        p("Some of what we look at is meant to be tongue-in-cheek, and we aimed to present information in a way that was both interesting and fun to view. There are many more 
+                          questions to explore about the", strong(" nature of social media and its role in politics, "), "and our analysis only scratches the surface. There’s a lot more data 
+                          out there to be looked at regarding this topic, and it will be interesting to see how social media and politics will continue to evolve in the future. 
+                          After all, who says it's only the younger generations that are addicted to social media?"),
                         htmlOutput('home.image')
                         
                ),
