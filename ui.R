@@ -22,7 +22,6 @@ my.ui <- fluidPage(
     navbarMenu("Home",
                tabPanel("Home",
                         p("Our thesis goes here: ")
-                        
                         ),
                tabPanel("About",
                         p("Who are we?")
