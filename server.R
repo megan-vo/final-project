@@ -2,7 +2,7 @@
 library(ggplot2)
 library(shiny)
 library(tm)
-#library(SnowballC)
+library(SnowballC)
 library(wordcloud)
 library(RColorBrewer)
 library(shinythemes)
@@ -40,17 +40,14 @@ corpus <- Corpus(VectorSource(data$Tweet_Text))
 # Text Processing to isolate text
 corpus <- tm_map(corpus, removePunctuation)
 corpus <- tm_map(corpus, removeNumbers)
-<<<<<<< HEAD
 corpus <- tm_map(corpus, tolower)
-corpus <- tm_map(corpus, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
+corpus <- tm_map(corpus, function(x) iconv(x, 'UTF-8', 'ASCII'))
 corpus <- tm_map(corpus, removeWords, stopwords(kind = "en"))
 corpus <- tm_map(corpus, stripWhitespace)
-=======
 corpus <- tm_map(corpus, tolower) 
 corpus <- tm_map(corpus, function(x) iconv(x, 'UTF-8', "ASCII"))
 corpus <- tm_map(corpus, removeWords, stopwords(kind = "en")) 
 corpus <- tm_map(corpus, stripWhitespace) 
->>>>>>> 7059be64b35d13d0a6288dd578a1d3adec2fed1b
 corpus <- tm_map(corpus, removeWords, c("will", "thank", "realdonaldtrump", "amp",
                                         "just", "people", "get", "now", "like", "new",
                                         "back", "dont", "much"))
