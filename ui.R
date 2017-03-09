@@ -38,7 +38,7 @@ my.ui <- fluidPage(
                         p("We found that Trump’s tweets from January 2016 to September 2016 were", em(" more popular "), "than Clinton’s tweets in terms of favorites and retweets. 
                           This could be due to word choice of each candidate’s tweets, and when we look at Trump’s grammar frequency, we do see that it is marked by abrasive and blunt 
                           language. If you take into account Twitter’s inherent ‘DNA’ marked by bursts of", strong( em( " short, 140-characters,") ), " it may be that attention-grabbing, 
-                          quick posts are the tweets that capture the most attention. It brings into question whether social media platforms actually foster political conversation or 
+                          quick posts are the tweets that capture the most notice. It brings into question whether social media platforms actually foster political conversation or 
                           verge on short bits of loud mess (or both)."),
                         p("We also decided to look at the polarity of tweets", em(" about "), "these candidates and found that the three presidential candidates we looked at for this section 
                           (Sanders, Clinton, and Trump) had distributions of very positive, neutral, and very negative tweets. We mapped out where these tweets were coming from and found out 
