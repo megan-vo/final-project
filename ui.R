@@ -213,7 +213,11 @@ my.ui <- fluidPage(
                  #Creates tab containing a picture and analysis comparing the two map visualizations named 'Analysis'
                  tabPanel('Analysis',
                           h3("Comparing Number of Tweets Mentioning Presidential Candidates per State"),
-                          p("By comparing the two map visualizations, one can see that the states that tweeted more frequently about ", em("Donald Trump"), " tended to have much fewer tweets mentioning ", em("Hillary Clinton"), " and vice versa. For example, states around the middle of the country (i.e. Oklahoma, Nebraska), have a large number of tweets mentioning ", em("Donald Trump"), " however these states have a much smaller number of tweets mentioning ", em("Hillary Clinton"), ". These results reflect the outcome of the 2016 Presidential Election, as the states in the middle of the nation had a majority vote for ", strong("Donald Trump"), " while the states on the East and West Coast had a majority vote for ", strong("Hillary Clinton"), "."),
+                          p("By comparing the two map visualizations, one can see that the states that tweeted more frequently about ", em("Donald Trump"), " tended to have much fewer tweets mentioning ", 
+                            em("Hillary Clinton"), " and vice versa. For example, states around the middle of the country (i.e. Oklahoma, Nebraska), have a large number of tweets mentioning ", em("Donald Trump"), " however these states have a much smaller number of tweets mentioning ", em("Hillary Clinton"), 
+                            ". These results reflect the outcome of the 2016 Presidential Election, as the states in the middle of the nation had a majority vote for ", 
+                            strong("Donald Trump"), " while the states on the East and West Coast had a majority vote for ", strong("Hillary Clinton"), ". The tweets
+                            were scraped from May 10th, 2016 data."),
                           htmlOutput('t.c.image'),
                           p("This picture comes from the following source: http://media.nbcsandiego.com/images/clinton-trump-split-funny.jpg"))
                )
@@ -232,7 +236,7 @@ my.ui <- fluidPage(
                Vik Paruchuri's data set to tweets", strong(" about "), "three 2016 Presidential candidates: Bernie Sanders,
                Donald Trump, and Hillary Clinton. Tweets with a polarity of", strong( ' -1 ' ), "theoretically
                indicates strong negativity while tweets with a polarity of", strong( ' 1 ' ), "indicates strong
-               positivity."),
+               positivity. The data were scraped from May 10th, 2016's tweets."),
              p("The link to the data set: ", a("https://www.dataquest.io/blog/matplotlib-tutorial/")),
              
              # Details functionalities of plot
