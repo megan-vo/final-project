@@ -138,8 +138,7 @@ my.ui <- fluidPage(
                             strong('tweets.'),
                             'This is displayed by a', em('word cloud,'), ' 
                             the words are colorized for visual diferentiation and
-                            will display as larger if they are more frequently used. By 
-                            looking at the word cloud c'),
+                            will display as larger if they are more frequently used.'),
                           p('', strong('Functionalities:'), 'You are able to 
                             filter for the minimum amount of times a word appears in set of tweets 
                             as well as filter for the maximum amount of words in the cloud via the
@@ -162,7 +161,8 @@ my.ui <- fluidPage(
                           p(strong("Observations:"), "By looking at the word cloud it is easy to see that the largest and most frequent word by far
                             is well, Trump. This is due to amount of times Trump quoted a tweet with his own name in it. This goes to show that 
                             our President must be", em("very "), " concerned with his public perception. It also shows that his word choice is
-                            usually rather blunt and abrasive, one the requires a good amount of imagination to take any relevant or coherent meaning from it.")
+                            usually rather blunt and abrasive, one the requires a good amount of imagination to take any relevant or coherent meaning from it."),
+                          p('The data set for both the cloud and the plot was derived from - https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/')
                           )
                  
                           )
