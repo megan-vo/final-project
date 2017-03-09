@@ -470,6 +470,24 @@ my.server <- function(input, output) {
     tags$img(src = "http://media.nbcsandiego.com/images/clinton-trump-split-funny.jpg ", width = 800, height = 450)
   })
   
+  ###############
+  # Home Images #
+  ###############
+  output$home.image <- renderUI({
+    tags$img(src = "https://www.cardschat.com/news/wp-content/uploads/2016/05/clinton-vs-trump-1.jpg",
+             width = 500, height = 300)
+  })
+  
+  output$aneesha <- renderUI({
+    tags$img(src = "https://scontent.xx.fbcdn.net/v/t31.0-8/15195931_1342470159106100_7777921903677895156_o.jpg?oh=9da1fdeed29bc150bdc9cc4516b166d6&oe=5973AB1D",
+             width = 200, height = 200)  
+  })
+  
+  output$sahana <- renderUI({
+    tags$img(src = "https://scontent.xx.fbcdn.net/v/t1.0-0/p526x296/17022153_10208931030939488_4816631109457856095_n.jpg?oh=c2591e8da97c30d8174cadec99a12988&oe=5930CF26",
+             width = 200, height = 200)
+  })
+  
 }
 
 # Creates server 

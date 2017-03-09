@@ -17,15 +17,41 @@ my.ui <- fluidPage(
   
   # Creates NavBar layout
   navbarPage(
-    "Navbar",
+    "Trump's Twitter Tussle",
     
     navbarMenu("Home",
                tabPanel("Home",
-                        p("Our thesis goes here: ")
+                        p("Our thesis goes here: "),
+                        htmlOutput('home.image')
                         
                ),
                tabPanel("About",
-                        p("Who are we?")
+                        h3(strong("Get To Know Us!")),
+                        p("We are a group of students at the University of Washington passionate about
+                          technology and data. We had a lot of fun working on this project for our Informatics class and hope you 
+                          enjoy perusing through."),
+                        fluidRow(
+                          column(6,
+                                 h5(strong("Aneesha Ananda")),
+                                 htmlOutput('aneesha'),
+                                 p("Aneesha Nanda is a sophomore at the University of Washington, intending to study both Informatics and Public Health. 
+                                   A fun fact about Aneesha is that she is a part of the Bollywood dance team on campus."),
+                                 h5(strong("Megan Bui")),
+                                 p("Megan Bui is a sophomore at the University of Washington studying Computer Science and Sociology. 
+                                   A fun fact about Megan is that she is a part of a band with some of her fellow 14x TAs.")
+                          ),
+                          column(6,
+                                 h5(strong("Alex Alspaugh")),
+                                 p("Alex Alspaugh is a freshman at the University of Washington intending to study Informatics.
+                                   He plans to focus on human computer interaction and user centered design, and a fun fact about Alex
+                                   is that he enjoys photography as a hobby."),
+                                 h5(strong("Sahana Vishwanath")),
+                                 htmlOutput('sahana'),
+                                 p("Sahana Vishwanath is a sophomore at the University of Washington, intending to study Informatics with a concentration in Data Science. 
+                                   A fun fact about Sahana is that she has been trained in multiple Indian dance forms")
+                          )
+                        )
+
                )
     ),
     
@@ -60,7 +86,7 @@ my.ui <- fluidPage(
                                   ),
                          
                          # Creates another tab panel in navbar      
-                         tabPanel("Tweet Summary Statistics Table", 
+                         tabPanel("Tweet Summary Statistics Table and Analysis", 
                                   
                                   # Inserts tables, headers, and descriptions into new tab  
                                   h3(strong("Summary Statistics for Clinton and Trump Tweets")),
