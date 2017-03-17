@@ -37,16 +37,17 @@ my.ui <- fluidPage(
                           " In addition, we have a", strong(" bonus "), "section that looks at #MAGA (Make America Great Again) and #WomensMarch tweets for a more qualitative look into political viewpoints on social media."),
                         p("We found that Trump’s tweets from January 2016 to September 2016 were", em(" more popular "), "than Clinton’s tweets in terms of favorites and retweets. 
                           This could be due to word choice of each candidate’s tweets, and when we look at Trump’s grammar frequency, we do see that it is marked by abrasive and blunt 
-                          language. If you take into account Twitter’s inherent ‘DNA’ marked by bursts of", strong( em( " short, 140-characters,") ), " it may be that attention-grabbing, 
-                          quick posts are the tweets that capture the most notice. It brings into question whether social media platforms actually foster political conversation or 
-                          verge on short bits of loud mess (or both)."),
+                          language. If you take into account Twitter’s inherent characteristic marked by 'bursts' of", strong( em( " short, 140-characters,") ), " it may be that attention-grabbing, 
+                          quick posts are the tweets that capture the most notice. It brings into question whether social media platforms actually promote political conversation or 
+                          verge on short bits of 'loud mess' (or both) as noted in Sam Sanders' article: ", strong("'Did Social Media Ruin Election 2016?'"), a("http://www.npr.org/2016/11/08/500686320/did-social-media-ruin-election-2016")),
                         p("We also decided to look at the polarity of tweets", em(" about "), "these candidates and found that the three presidential candidates we looked at for this section 
                           (Sanders, Clinton, and Trump) had distributions of very positive, neutral, and very negative tweets. We mapped out where these tweets were coming from and found out 
                           that states that tweeted more about Trump were less likely to tweet about Hillary and vice versa. This reflects the outcome of the 2016 Presidential Election, which 
                           is interesting because our data is a snapshot of one day’s worth of Twitter scraping in May 2016."),
                         p("Some of what we look at is meant to be tongue-in-cheek, and we aimed to present information in a way that was both interesting and fun to view. There are many more 
-                          questions to explore about the", strong(" nature of social media and its role in politics, "), "and our analysis only scratches the surface. There’s a lot more data 
-                          out there to be looked at regarding this topic, and it will be interesting to see how social media and politics will continue to evolve in the future. 
+                          questions to explore about the", strong(" nature of social media and its role in politics, "), "and our analysis only scratches the surface. We encourage viewers
+                          to explore and read more about this topic, starting with articles like the one we cited above as it opens up intriguing questions about this issue. There’s a lot more data 
+                          out there to be looked at regarding this topic, and it will be interesting to see how social media and politics will continue to evolve in the future.  
                           After all, who says it's only the younger generations that are addicted to social media?"),
                         htmlOutput('home.image')
                         
@@ -376,7 +377,7 @@ my.ui <- fluidPage(
                         hashtag will pop up. If you hit the", strong( em (" 'Generate' ")), " button, it will generate a 
                         random photo from the Women's March twitter data set (which is separate from the tweets). While we 
                         do want to warn that", strong(em(" viewer discretion is advised, ")), "we also want you to have fun
-                        perusing through!", em(" - Love the Creative Group")),
+                        perusing through!"),
                       
                       p("Data derived from: Wendy He's #MAGA and #WomensMarch data set: ",
                         em(a("https://data.world/wendyhe/tweets-on-womensmarch-and-maga"))),
