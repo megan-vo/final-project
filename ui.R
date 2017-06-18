@@ -98,7 +98,7 @@ my.ui <- fluidPage(
                         p("Trump vs. Clinton Tweets' Faves and Retweets: ", a("https://www.kaggle.com/benhamner/clinton-trump-tweets")),
                         p("Tweets about Candidates for Map and Polarity: ", a("https://www.dataquest.io/blog/matplotlib-tutorial/")),
                         
-                        #p("Trump Tweets for Word Analysis: ", a("https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/")),
+                        p("Trump Tweets for Word Analysis: ", a("https://www.crowdbabble.com/blog/the-11-best-tweets-of-all-time-by-donald-trump/")),
                         
                         p("#MAGA & #WomensMarch Tweets/Images: ", a("https://data.world/wendyhe/tweets-on-womensmarch-and-maga"))
                         )
@@ -378,7 +378,7 @@ my.ui <- fluidPage(
                       # Instructions of page and how to view tweets/img
                       p("Go ahead - hit the", strong( em("'Compare' ")), "button. A random tweet from each 
                         hashtag will pop up. If you hit the", strong( em (" 'Generate' ")), " button, it will generate a 
-                        random photo from the Women's March twitter data set (which is separate from the tweets). While we 
+                        random photo from the Women's March Twitter data set (which is separate from the tweets). While we 
                         do want to warn that", strong(em(" viewer discretion is advised, ")), "we also want you to have fun
                         perusing through!"),
                       
