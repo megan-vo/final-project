@@ -4,7 +4,7 @@
 ### Project Overview
 The strong personalities of Hillary Clinton and Donald Trump caused a lot of stir on social media, especially Twitter, so we decided to analyze certain aspects of their own tweets, as well as tweets directed towards them. Using data collected from various Twitter .csv files, we used a Shiny app as the method to display our analyses. Our target audiences are the general public, specifically individuals interested in politics, as well as election forecasters, since they would have a heightened interest in different methods to predict election outcomes. We hope our data provides insight to our audiences about how Twitter data can explain certain election trends.
 
-*A note about this version of our project: We have ommited the Word Cloud portion due to memory constraints with Shiny Apps. The code can still be viewed in the ui.R and server.R files though commented out*
+*A note about this version of our project: We have ommited the Word Analysis portion due to memory constraints with Shiny Apps. The code can still be viewed in the ui.R and server.R files -- though it is commented out. When uncommented, both files should run fine locally, so feel free to play around and check that out!*
 
 ### Project Breakdown
 Our project is broken up into four parts, with one additional *bonus* part.
